@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>LEONIDA LEDGER — GTA VI Trophy Guide &amp; Tracker</title>
+<link rel="stylesheet" href="style.css">
+<script src="app.js" defer></script>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-title">LEONIDA LEDGER</div>
+    <div class="brand-sub">GTA VI Trophy Guide &amp; Tracker &middot; PlayStation 5 &middot; unofficial fan guide</div>
+  </div>
+  <div class="progress" id="progress">
+    <div class="progress-num" id="progressNum">0/55 earned (0%)</div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="grade-counts" id="gradeCounts">P 0/1 &middot; G 0/2 &middot; S 0/6 &middot; B 0/46</div>
+  </div>
+  <nav class="tabs" id="tabs" aria-label="Views">
+    <button class="tab active" data-view="ledger">Ledger</button>
+    <button class="tab" data-view="roadmap">Roadmap</button>
+    <button class="tab" data-view="matrix">Source Matrix</button>
+    <button class="tab" data-view="ledger100">100% Ledger</button>
+  </nav>
+  <div class="top-actions">
+    <button class="btn" id="spoilerBtn" type="button">Spoilers: hidden until earned</button>
+    <button class="btn" id="exportBtn" type="button">Export</button>
+    <button class="btn" id="importBtn" type="button">Import</button>
+    <span class="saved-note">Saved in this browser</span>
+  </div>
+</header>
+<div class="audit" id="audit">Loading the official list&hellip;</div>
+<main>
+  <section class="view active" id="view-ledger" aria-label="Ledger">
+    <div class="ledger-grid">
+      <div class="col-left">
+        <div class="panel" id="filtersPanel"><h2>Filters</h2><div class="chips" id="filters"></div></div>
+        <div class="panel" id="nextupPanel"><h2>Next up — in roadmap order</h2><ol class="nextup" id="nextup"></ol></div>
+        <div class="panel"><h2>Checklist</h2><div class="checklist" id="checklist"></div></div>
+      </div>
+      <div class="col-centre">
+        <div class="panel detail" id="detail"></div>
+      </div>
+      <div class="col-right">
+        <div class="panel" id="sourcesPanel"><h2>Sources — read 20 Nov 2026</h2><ol class="sources" id="sources"></ol><p class="fine">Our own wording. Cited [1][2][3][4][5][6][7][8][9] — read 20 Nov 2026 &middot; unofficial fan guide &middot; not affiliated with Rockstar Games or Sony.</p></div>
+      </div>
+    </div>
+  </section>
+  <section class="view" id="view-roadmap" aria-label="Roadmap">
+    <div class="roadmap-wrap" id="roadmap"></div>
+  </section>
+  <section class="view" id="view-matrix" aria-label="Source Matrix">
+    <div class="matrix-wrap" id="matrix"></div>
+  </section>
+  <section class="view" id="view-ledger100" aria-label="100 percent Ledger">
+    <div class="ledger100-wrap" id="ledger100"></div>
+  </section>
+</main>
+<div class="modal" id="importModal" hidden>
+  <div class="modal-card">
+    <h2>Import progress</h2>
+    <p>Paste an export JSON below, or pick a file. Importing replaces the saved progress in this browser.</p>
+    <textarea id="importText" rows="8" placeholder='{"earned": {"28": true}, "counters": {"28": 9}}'></textarea>
+    <div class="modal-actions">
+      <button class="btn" id="importFileBtn" type="button">Pick a file&hellip;</button>
+      <input type="file" id="importFile" accept=".json,application/json" hidden>
+      <button class="btn primary" id="importDoBtn" type="button">Import</button>
+      <button class="btn" id="importCloseBtn" type="button">Close</button>
+    </div>
+    <p class="fine" id="importMsg"></p>
+  </div>
+</div>
+<div class="toast" id="toast" hidden></div>
+<footer class="foot">LEONIDA LEDGER &middot; GTA VI trophy guide &amp; tracker &middot; 55 official trophies &middot; works offline &middot; unofficial fan guide, not affiliated with Rockstar Games or Sony.</footer>
+</body>
+</html>
