@@ -1,27 +1,38 @@
-// LEONIDA LEDGER — entrypoint. Copies app/ and screenshots/ to the output
-// directory and writes dossier.json with buildDossier, as the rules require.
-// Runs on Node 22, standard library only. Outside the grader,
-// MAKEFUN_OUTPUT_DIR stands in for /output.
-import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
-import { dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { buildDossier } from './vendor/makefun-frontend.ts';
+// THE LEONIDA FILES — entry program for gta6-trophy-guide-01.
+// Copies app/ and screenshots/ from this repository into the output
+// directory and writes /output/dossier.json with the kit's vendored
+// buildDossier, so the sealed scorer can check the entry exactly as
+// the judge will see it. Run with Node 22+ (type stripping handles
+// the .ts import); outside the grader, MAKEFUN_OUTPUT_DIR stands in
+// for /output.
 
-const repoRoot = dirname(fileURLToPath(import.meta.url));
-const outDir = process.env.MAKEFUN_OUTPUT_DIR || '/output';
+import { buildDossier } from "./vendor/makefun-frontend.ts";
+import { cpSync, existsSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
 
-mkdirSync(outDir, { recursive: true });
-cpSync(join(repoRoot, 'app'), join(outDir, 'app'), { recursive: true });
-if (existsSync(join(repoRoot, 'screenshots'))) {
-  cpSync(join(repoRoot, 'screenshots'), join(outDir, 'screenshots'), { recursive: true });
-}
-
-const dossier = buildDossier(outDir, {
+const repoRoot = new URL(".", import.meta.url).pathname;
+const outputDir = process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
+const dossierCaps = {
   text_max_bytes: 163840,
   screenshots: { max: 4, max_bytes: 262144 },
   app_max_files: 993,
   app_max_bytes: 48 * 1024 * 1024,
   app_path_max_bytes: 1000,
-});
-writeFileSync(join(outDir, 'dossier.json'), dossier);
-console.log('leonida-ledger: wrote ' + join(outDir, 'dossier.json') + ' (' + dossier.length + ' bytes)');
+};
+
+function copyTree(name: string): void {
+  const from = join(repoRoot, name);
+  const to = join(outputDir, name);
+  if (!existsSync(from)) throw new Error(`main.ts: missing ${name}/ in the repository`);
+  rmSync(to, { recursive: true, force: true });
+  cpSync(from, to, { recursive: true });
+}
+
+mkdirSync(outputDir, { recursive: true });
+copyTree("app");
+copyTree("screenshots");
+const dossier = buildDossier(outputDir, dossierCaps);
+writeFileSync(join(outputDir, "dossier.json"), dossier);
+console.log(
+  `leonida-files: dossier.json written (${dossier.length} bytes) from app/ + screenshots/ into ${outputDir}`,
+);
