@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -7,76 +7,11 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header id="topbar">
-  <div class="brand">
-    <div class="brand-title">THE LEONIDA FILES</div>
-    <div class="brand-sub">GTA VI Trophy Guide &amp; Tracker · PlayStation 5 · unofficial fan guide</div>
-  </div>
-  <div class="progress" id="progressBox">
-    <div class="progress-line"><span id="progressText">0/55 earned (0%)</span><span id="gradeCounts">P 0/1 · G 0/2 · S 0/6 · B 0/46</span></div>
-    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-    <div class="progress-line muted"><span id="collectiblesLogged">0 collectibles logged</span><span>Saved in this browser</span></div>
-  </div>
-  <div class="top-actions">
-    <button id="spoilerBtn" type="button" title="Hide story trophies until earned">Spoilers: hidden until earned</button>
-    <button id="exportBtn" type="button">Export</button>
-    <button id="importBtn" type="button">Import</button>
-    <button id="copyLinkBtn" type="button">Copy progress link</button>
-  </div>
-</header>
-<div id="auditStrip" class="audit">Loading the guide…</div>
-<nav id="tabs" aria-label="Views">
-  <button type="button" data-view="ledger" class="tab active">Ledger</button>
-  <button type="button" data-view="roadmap" class="tab">Roadmap</button>
-  <button type="button" data-view="missables" class="tab">Missables</button>
-  <button type="button" data-view="matrix" class="tab">Source Matrix</button>
-  <button type="button" data-view="ledger100" class="tab">100% Ledger</button>
-  <span id="tabNote" class="tab-note"></span>
-</nav>
-<main id="main">
-  <section id="view-ledger" class="view active" aria-label="Ledger">
-    <div id="nextUpStrip" class="nextup"></div>
-    <div class="ledger-grid">
-      <div class="col-left">
-        <div id="filterRow" class="filters"></div>
-        <input id="searchBox" type="search" placeholder="Search trophies by name or description…" aria-label="Search trophies">
-        <div id="checklist" class="checklist"></div>
-      </div>
-      <div class="col-centre" id="trophyDetail"></div>
-      <div class="col-right" id="sourcesPanel"></div>
-    </div>
-  </section>
-  <section id="view-roadmap" class="view" aria-label="Roadmap">
-    <div id="roadmapBody"></div>
-  </section>
-  <section id="view-missables" class="view" aria-label="Missables">
-    <div id="missablesBody"></div>
-  </section>
-  <section id="view-matrix" class="view" aria-label="Source Matrix">
-    <div id="matrixBody"></div>
-  </section>
-  <section id="view-ledger100" class="view" aria-label="100 percent Ledger">
-    <div id="ledger100Body"></div>
-  </section>
-</main>
-<div id="importPanel" class="modal hidden" role="dialog" aria-label="Import progress">
-  <div class="modal-card">
-    <h2>Import progress</h2>
-    <p>Paste an exported JSON below, or pick a file. Importing replaces the saved ticks and counters.</p>
-    <textarea id="importText" rows="8" placeholder='{"app":"leonida-files","version":2,"earned":[2,3],"counters":{}}'></textarea>
-    <div class="modal-row">
-      <input id="importFile" type="file" accept=".json,application/json">
-      <button id="importDoBtn" type="button">Import pasted JSON</button>
-      <button id="importCloseBtn" type="button">Close</button>
-    </div>
-    <p id="importMsg" class="muted"></p>
-  </div>
-</div>
-<div id="toast" class="toast hidden" role="status"></div>
-<footer id="pageFooter">
-  <span>THE LEONIDA FILES — unofficial fan guide · not affiliated with Rockstar Games or Sony.</span>
-  <span>Trophy names, descriptions and grades as PlayStation publishes them · guides in our own words · sources read 20 Nov 2026.</span>
-</footer>
+<header id="topbar"></header>
+<div id="audit" class="audit"></div>
+<nav id="tabs" class="tabs" aria-label="Views"></nav>
+<main id="view"></main>
+<footer id="foot"></footer>
 <script src="app.js"></script>
 </body>
 </html>
